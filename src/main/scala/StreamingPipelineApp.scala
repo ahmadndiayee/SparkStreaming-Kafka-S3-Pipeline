@@ -4,7 +4,7 @@ import com.typesafe.config.ConfigFactory
 import org.apache.spark.sql.SparkSession
 
 object StreamingPipelineApp extends App {
-  val configFile = ConfigFactory.parseFile(new File("src/main/resources/dc19.conf"))
+  val configFile = ConfigFactory.parseFile(new File("src/main/resources/stp.conf"))
 
   val spark : SparkSession = SparkSession.
     builder().
@@ -14,8 +14,7 @@ object StreamingPipelineApp extends App {
   spark.sparkContext.setLogLevel("WARN")
 
 
-  //val path = configFile.getString("STP.SOURCES.PATH")
-  val path = "src/main/resources/data/"
+  val path = configFile.getString("STP.SOURCES.PATH")
   val df = StreamingPipeline.checkDirectory(spark, path)
 //  df.writeStream
 //    .format("console")
