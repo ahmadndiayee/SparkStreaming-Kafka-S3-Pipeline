@@ -1,0 +1,43 @@
+# .gitignore
+
+# sbt
+project/project
+project/target
+target/
+.history
+
+# Java
+*.class
+
+# Logs
+*.log
+log/
+logs/
+
+# Temporary files
+*~
+*.bak
+*.old
+*.tmp
+nohup.out
+.bsp/
+tmp/
+
+# vim
+.*.sw[a-z]
+
+# IntelliJ
+.idea/
+.idea_modules/
+*.iml
+*.ipr
+*.iws
+
+
+# Test output directory
+
+# Data
+#src/main/resources/data
+spark-warehouse/
+metastore_db/
+src/main/resources/checkpoint/
