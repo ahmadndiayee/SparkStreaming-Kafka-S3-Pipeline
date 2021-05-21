@@ -4,6 +4,9 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types.{DoubleType, IntegerType, StringType, StructField, StructType}
 
+val KAFKA_TOPIC = "s3-kafka"
+val KAFKA_SERVER = "localhost:9092"
+val KAFKA_CHECKPOINT = "src/main/resources/checkpoint/"
 
 object StreamingPipeline {
 
@@ -28,9 +31,9 @@ object StreamingPipeline {
       .selectExpr("id AS key", "CONCAT_WS(',', id, first_name, last_name, date_of_birth) AS value")
       .writeStream
       .format("kafka")
-      .option("kafka.bootstrap.servers", "localhost:9092")
-      .option("topic", "s3-kafka")
-      .option("checkpointLocation", "src/main/resources/checkpoint/")
+      .option("kafka.bootstrap.servers", KAFKA_SERVER)
+      .option("topic", KAFKA_TOPIC)
+      .option("checkpointLocation", KAFKA_CHECKPOINT)
       .start()
       .awaitTermination()
   }
