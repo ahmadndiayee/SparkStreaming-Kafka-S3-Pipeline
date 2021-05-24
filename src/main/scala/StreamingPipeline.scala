@@ -4,11 +4,12 @@ import org.apache.spark.sql.{DataFrame, SparkSession}
 import org.apache.spark.sql.streaming.Trigger
 import org.apache.spark.sql.types.{DoubleType, IntegerType, StringType, StructField, StructType}
 
-val KAFKA_TOPIC = "s3-kafka"
-val KAFKA_SERVER = "localhost:9092"
-val KAFKA_CHECKPOINT = "src/main/resources/checkpoint/"
 
 object StreamingPipeline {
+
+  val KAFKA_TOPIC = "s3-kafka"
+  val KAFKA_SERVER = "localhost:9092"
+  val KAFKA_CHECKPOINT = "src/main/resources/checkpoint/"
 
   val schema = StructType(List(
     StructField("id", StringType, true),
